@@ -19,7 +19,6 @@ return new class extends Migration {
       $table->string('t_products_kategori');
       $table->string('t_products_gambar');
       $table->string('t_products_status');
-      $table->timestamps();
     });
   }
 
