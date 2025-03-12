@@ -34,7 +34,22 @@ class TProductController extends Controller
    */
   public function show(string $id)
   {
-    //
+    $data = TProduct::where('t_products_id', $id)->first();
+
+    if ($data) {
+      return response()->json([
+        'status' => 1,
+        'data' => $data,
+        'message' => 'Data ditemukan!'
+      ], 200);
+    } else {
+      return response()->json([
+        'status' => 0,
+        'data' => null,
+        'message' => 'Data tidak ditemukan!'
+      ], 404);
+    }
+
   }
 
   /**
