@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\TProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TProductController extends Controller
 {
@@ -26,15 +27,24 @@ class TProductController extends Controller
    */
   public function store(Request $request)
   {
-    $request->validate([
-      't_products_nama' => 'required|string|max:255',
-      't_products_harga' => 'required|string',
-      't_products_deskripsi' => 'required|string',
-      't_products_stok' => 'required|string',
-      't_products_kategori' => 'required|string|max:255',
-      't_products_gambar' => 'nullable|string',
-      't_products_status' => 'required|string',
-    ]);
+    $rules = [
+      't_products_nama' => 'required',
+      't_products_harga' => 'required',
+      't_products_deskripsi' => 'required',
+      't_products_stok' => 'required',
+      't_products_kategori' => 'required',
+      't_products_gambar' => 'required',
+      't_products_status' => 'required',
+    ];
+
+    $validator = Validator::make($request->all(), $rules);
+
+    if ($validator->fails()) {
+      return response()->json([
+        'status' => 0,
+        'message' => $validator->errors()
+      ], 400);
+    }
 
     $data = new TProduct();
     $data->t_products_nama = $request->t_products_nama;
