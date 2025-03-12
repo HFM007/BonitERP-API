@@ -10,6 +10,8 @@ class TProduct extends Model
   use HasFactory;
 
   protected $table = "t_products";
+  protected $primaryKey = "t_products_id";
+  public $timestamps = false;
   protected $fillable = [
     't_products_nama',
     't_products_harga',
