@@ -26,7 +26,40 @@ class TProductController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $request->validate([
+      't_products_nama' => 'required|string|max:255',
+      't_products_harga' => 'required|string',
+      't_products_deskripsi' => 'required|string',
+      't_products_stok' => 'required|string',
+      't_products_kategori' => 'required|string|max:255',
+      't_products_gambar' => 'nullable|string',
+      't_products_status' => 'required|string',
+    ]);
+
+    $data = new TProduct();
+    $data->t_products_nama = $request->t_products_nama;
+    $data->t_products_harga = $request->t_products_harga;
+    $data->t_products_deskripsi = $request->t_products_deskripsi;
+    $data->t_products_stok = $request->t_products_stok;
+    $data->t_products_kategori = $request->t_products_kategori;
+    $data->t_products_gambar = $request->t_products_gambar;
+    $data->t_products_status = $request->t_products_status;
+
+    $post = $data->save();
+
+    if ($post) {
+      return response()->json([
+        'status' => '1',
+        'data' => $data,
+        'message' => 'Data berhasil disimpan!'
+      ], 200);
+    } else {
+      return response()->json([
+        'status' => 0,
+        'data' => null,
+        'message' => 'Data gagal disimpan!'
+      ], 400);
+    }
   }
 
   /**
