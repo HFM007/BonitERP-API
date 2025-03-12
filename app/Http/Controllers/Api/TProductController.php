@@ -42,7 +42,8 @@ class TProductController extends Controller
     if ($validator->fails()) {
       return response()->json([
         'status' => 0,
-        'message' => $validator->errors()
+        'data' => $validator->errors(),
+        'message' => 'Data gagal ditambahkan!'
       ], 400);
     }
 
