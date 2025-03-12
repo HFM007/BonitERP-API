@@ -34,7 +34,6 @@ class TProductController extends Controller
       't_products_stok' => 'required',
       't_products_kategori' => 'required',
       't_products_gambar' => 'required',
-      't_products_status' => 'required',
     ];
 
     $validator = Validator::make($request->all(), $rules);
@@ -54,7 +53,7 @@ class TProductController extends Controller
     $data->t_products_stok = $request->t_products_stok;
     $data->t_products_kategori = $request->t_products_kategori;
     $data->t_products_gambar = $request->t_products_gambar;
-    $data->t_products_status = $request->t_products_status;
+    $data->t_products_status = 1;
 
     $post = $data->save();
 
@@ -121,7 +120,6 @@ class TProductController extends Controller
       't_products_stok' => 'required',
       't_products_kategori' => 'required',
       't_products_gambar' => 'required',
-      't_products_status' => 'required',
     ];
 
     $validator = Validator::make($request->all(), $rules);
@@ -140,7 +138,7 @@ class TProductController extends Controller
     $data->t_products_stok = $request->t_products_stok;
     $data->t_products_kategori = $request->t_products_kategori;
     $data->t_products_gambar = $request->t_products_gambar;
-    $data->t_products_status = $request->t_products_status;
+    $data->t_products_status = 1;
 
     $post = $data->save();
 
@@ -155,7 +153,6 @@ class TProductController extends Controller
     } else {
       return response()->json([
         'status' => 0,
-        'data' => null,
         'message' => 'Data gagal diperbarui!'
       ], 400);
     }
@@ -204,7 +201,6 @@ class TProductController extends Controller
     } else {
       return response()->json([
         'status' => 0,
-        'data' => null,
         'message' => 'Data gagal diperbarui!'
       ], 400);
     }
