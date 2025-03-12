@@ -14,7 +14,7 @@ class TProductSeeder extends Seeder
   public function run(): void
   {
     $faker = \Faker\Factory::create('id_ID');
-    for ($i = 0; $i < 10; $i++) {
+    for ($i = 0; $i < 5; $i++) {
       TProduct::create([
         't_products_nama' => $faker->name,
         't_products_harga' => $faker->randomNumber(5),
