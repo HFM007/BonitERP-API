@@ -16,7 +16,7 @@ class TProductController extends Controller
   {
     $data = TProduct::all();
 
-    if ($data) {
+    if ($data->count() != 0) {
       return response()->json([
         'status' => 1,
         'data' => $data,
