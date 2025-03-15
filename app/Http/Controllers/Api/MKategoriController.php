@@ -16,11 +16,19 @@ class MKategoriController extends Controller
   public function index()
   {
     $data = MKategori::all();
-    return response()->json([
-      'status' => 1,
-      'data' => $data,
-      'message' => 'Data ditemukan!'
-    ], 200);
+
+    if ($data) {
+      return response()->json([
+        'status' => 1,
+        'data' => $data,
+        'message' => 'Data ditemukan!'
+      ], 200);
+    } else {
+      return response()->json([
+        'status' => 0,
+        'message' => 'Data tidak ditemukan!'
+      ], 404);
+    }
   }
 
   /**
@@ -32,17 +40,17 @@ class MKategoriController extends Controller
       'm_kategori_nama' => 'required',
       'm_kategori_status' => 'required'
     ];
-    
+
     $validator = Validator::make($request->all(), $rules);
-    
-    if ($validator->fails()){
+
+    if ($validator->fails()) {
       return response()->json([
         'status' => 0,
         'data' => $validator->errors(),
         'message' => 'Data gagal ditambahkan!'
       ]);
     }
-    
+
     $data = new MKategori();
     $data->m_kategori_nama = $request->m_kategori_nama;
     $data->m_kategori_status = 1;
@@ -91,7 +99,7 @@ class MKategoriController extends Controller
   {
     $data = MKategori::where('m_kategori_id', $id)->first();
 
-    if(empty($data)) {
+    if (empty($data)) {
       return response()->json([
         'status' => 0,
         'message' => 'Data tidak ditemukan!'
@@ -105,7 +113,7 @@ class MKategoriController extends Controller
 
     $validator = Validator::make($request->all(), $rules);
 
-    if( $validator->fails() ) {
+    if ($validator->fails()) {
       return response()->json([
         'status' => 0,
         'data' => $validator->errors(),
@@ -119,13 +127,13 @@ class MKategoriController extends Controller
 
     $post = $data->save();
 
-    if($post){
+    if ($post) {
       return response()->json([
         'status' => 1,
         'data' => $data,
         'message' => 'Data berhasil diupdate!'
       ], 200);
-    } else{
+    } else {
       return response()->json([
         'status' => 0,
         'message' => 'Data gagal diupdate!'
@@ -145,8 +153,8 @@ class MKategoriController extends Controller
     ];
 
     $validator = Validator::make($request->all(), $rules);
-    
-    if($validator->fails()){
+
+    if ($validator->fails()) {
       return response()->json([
         'status' => 0,
         'data' => $validator->errors(),
@@ -166,8 +174,8 @@ class MKategoriController extends Controller
       ], 200);
     } else {
       return response()->json([
-        'status'=> 0,
-        'message'=> 'Data gagal dihapus!'
+        'status' => 0,
+        'message' => 'Data gagal dihapus!'
       ], 400);
     }
 
