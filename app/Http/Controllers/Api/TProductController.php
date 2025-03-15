@@ -15,11 +15,19 @@ class TProductController extends Controller
   public function index()
   {
     $data = TProduct::all();
-    return response()->json([
-      'status' => 1,
-      'data' => $data,
-      'message' => 'Data ditemukan!'
-    ], 200);
+
+    if ($data) {
+      return response()->json([
+        'status' => 1,
+        'data' => $data,
+        'message' => 'Data ditemukan!'
+      ], 200);
+    } else {
+      return response()->json([
+        'status' => 0,
+        'message' => 'Data tidak ditemukan!'
+      ], 404);
+    }
   }
 
   /**
