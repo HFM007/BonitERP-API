@@ -38,7 +38,6 @@ class MKategoriController extends Controller
   {
     $rules = [
       'm_kategori_nama' => 'required',
-      'm_kategori_status' => 'required'
     ];
 
     $validator = Validator::make($request->all(), $rules);
@@ -58,6 +57,7 @@ class MKategoriController extends Controller
     $post = $data->save();
 
     if ($post) {
+      $data->makeHidden(['m_kategori_id', 'm_kategori_status']);
       return response()->json([
         'status' => 1,
         'data' => $data,
@@ -107,7 +107,6 @@ class MKategoriController extends Controller
 
     $rules = [
       'm_kategori_nama' => 'required',
-      'm_kategori_status' => 'required',
     ];
 
     $validator = Validator::make($request->all(), $rules);
@@ -127,6 +126,7 @@ class MKategoriController extends Controller
     $post = $data->save();
 
     if ($post) {
+      $data->makeHidden(['m_kategori_id', 'm_kategori_status']);
       return response()->json([
         'status' => 1,
         'data' => $data,
@@ -154,6 +154,7 @@ class MKategoriController extends Controller
     $validator = Validator::make($request->all(), $rules);
 
     if ($validator->fails()) {
+      $data->makeHidden(['m_kategori_nama','m_katagori_id']);
       return response()->json([
         'status' => 0,
         'data' => $validator->errors(),
