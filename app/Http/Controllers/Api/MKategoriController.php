@@ -17,7 +17,7 @@ class MKategoriController extends Controller
   {
     $data = MKategori::all();
 
-    if ($data) {
+    if ($data->count() !=0) {
       return response()->json([
         'status' => 1,
         'data' => $data,
