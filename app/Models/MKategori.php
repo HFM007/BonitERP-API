@@ -7,10 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class MKategori extends Model
 {
   protected $table = "m_kategori";
-  
-  public $timestamps = false;
-
   protected $primaryKey = "m_kategori_id";
+  public $timestamps = false;
 
   protected $fillable = [
     'm_kategori_nama',
