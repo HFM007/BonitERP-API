@@ -86,7 +86,6 @@ class MKategoriController extends Controller
     } else {
       return response()->json([
         'status' => 0,
-        'data' => null,
         'message' => 'Data tidak ditemukan!'
       ], 404);
     }
