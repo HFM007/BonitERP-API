@@ -119,9 +119,8 @@ class MKategoriController extends Controller
       ]);
     }
 
-    $data = new MKategori();
     $data->m_kategori_nama = $request->m_kategori_nama;
-    $data->m_kategori_status = $request->m_kategori_status;
+    $data->m_kategori_status = 1;
 
     $post = $data->save();
 
@@ -167,6 +166,7 @@ class MKategoriController extends Controller
     $post = $data->save();
 
     if ($post) {
+      $data->makeHidden(['m_kategori_id','m_kategori_nama']);
       return response()->json([
         'status' => 1,
         'data' => $data,
