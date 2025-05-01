@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\TProductController;
 use App\Http\Controllers\Api\MKategoriController;
+use App\Http\Controllers\Api\TTransaksiController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +25,12 @@ Route::prefix('mkategori')->group(function () {
   Route::post('/', [MKategoriController::class, 'store']);
   Route::put('/update/{id}', [MKategoriController::class, 'update']);
   Route::put('/delete/{id}', [MKategoriController::class, 'destroy']);
+});
+
+Route::prefix('transaksi')->group(function () {
+  Route::get('/', [TTransaksiController::class, 'index']);
+  Route::get('/{id}', [TTransaksiController::class, 'show']);
+  Route::post('/', [TTransaksiController::class, 'store']);
+  Route::put('/update/{id}', [TTransaksiController::class, 'update']);
+  Route::put('/delete/{id}', [TTransaksiController::class, 'destroy']);
 });
