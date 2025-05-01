@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\TTransaksi;
+use App\Models\TProduct;
+use App\Models\MKategori;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Termwind\Components\Raw;
@@ -38,6 +41,7 @@ class TTransaksiController extends Controller
     $rules = [
       't_transaksi_user_id' => 'required',
       't_transaksi_produk_id' => 'required',
+      't_transaksi_kategori_id' => 'required',
       't_transaksi_jumlah' => 'required',
       't_transaksi_total_harga' => 'required',
       't_transaksi_jenis_pembayaran' => 'required',
@@ -56,6 +60,7 @@ class TTransaksiController extends Controller
     $data = new TTransaksi();
     $data->t_transaksi_user_id = $request->t_transaksi_user_id;
     $data->t_transaksi_produk_id = $request->t_transaksi_produk_id;
+    $data->t_transaksi_kategori_id = $request->t_transaksi_kategori_id;
     $data->t_transaksi_jumlah = $request->t_transaksi_jumlah;
     $data->t_transaksi_total_harga = $request->t_transaksi_total_harga;
     $data->t_transaksi_jenis_pembayaran = $request->t_transaksi_jenis_pembayaran;
@@ -119,6 +124,7 @@ class TTransaksiController extends Controller
     $rules = [
       't_transaksi_user_id' => 'required',
       't_transaksi_produk_id' => 'required',
+      't_transaksi_kategori_id' => 'required',
       't_transaksi_jumlah' => 'required',
       't_transaksi_total_harga' => 'required',
       't_transaksi_jenis_pembayaran' => 'required',
@@ -137,6 +143,7 @@ class TTransaksiController extends Controller
     $data = new TTransaksi();
     $data->t_transaksi_user_id = $request->t_transaksi_user_id;
     $data->t_transaksi_produk_id = $request->t_transaksi_produk_id;
+    $data->t_transaksi_kategori_id = $request->t_transaksi_kategori_id;
     $data->t_transaksi_jumlah = $request->t_transaksi_jumlah;
     $data->t_transaksi_total_harga = $request->t_transaksi_total_harga;
     $data->t_transaksi_jenis_pembayaran = $request->t_transaksi_jenis_pembayaran;
@@ -192,7 +199,7 @@ class TTransaksiController extends Controller
     $post = $data->save();
 
     if ($post) {
-      $data->makeHidden('t_transaksi_id', 't_transaksi_produk_id', 't_transaksi_user_id', 't_transaksi_jumlah', 't_transaksi_total_harga', 't_transaksi_jenis_pembayaran');
+      $data->makeHidden('t_transaksi_id', 't_transaksi_produk_id', 't_transaksi_kategori_id', 't_transaksi_user_id', 't_transaksi_jumlah', 't_transaksi_total_harga', 't_transaksi_jenis_pembayaran');
 
       return response()->json([
         'status' => 1,
