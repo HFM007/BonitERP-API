@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\TProductController;
 use App\Http\Controllers\Api\MKategoriController;
 use App\Http\Controllers\Api\TTransaksiController;
+use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\RegisterController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +12,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
   return $request->user();
 })->middleware('auth:sanctum');
+
+Route::prefix('auth')->group(function () {
+  Route::post('/register', [RegisterController::class, '__invoke']);
+  Route::post('/login', [LoginController::class, '__invoke']);
+  // Route::post('/logout', [LogoutController::class, '__invoke'])->middleware('auth:sanctum');
+});
 
 Route::prefix('product')->group(function () {
   Route::get('/', [TProductController::class, 'index']);
