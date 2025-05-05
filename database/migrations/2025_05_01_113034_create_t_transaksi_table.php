@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('t_transaksi', function (Blueprint $table) {
             $table->id('t_transaksi_id');
-            $table->foreignId('t_transaksi_user_id')->constrained('users', 'user_id')->onDelete('cascade');
+            $table->foreignId('t_transaksi_user_id')->constrained('t_user', 't_user_id')->onDelete('cascade');
             $table->foreignId('t_transaksi_produk_id')->constrained('t_products', 't_products_id')->onDelete('cascade');
             $table->foreignId('t_transaksi_kategori_id')->constrained('m_kategori', 'm_kategori_id')->onDelete('cascade');
             $table->integer('t_transaksi_jumlah');
