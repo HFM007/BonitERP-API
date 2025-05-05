@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Psy\Readline\Hoa\FileLink;
 use App\Models\TProduct;
-use App\Models\User;
+use App\Models\TUser;
 use App\Models\MKategori;
 
 class TTransaksi extends Model
@@ -28,7 +28,7 @@ class TTransaksi extends Model
   }
   public function user()
   {
-    return $this->belongsTo(User::class, 't_transaksi_user_id', 'user_id');
+    return $this->belongsTo(TUser::class, 't_transaksi_user_id', 't_user_id');
   }
   public function kategori()
   {
