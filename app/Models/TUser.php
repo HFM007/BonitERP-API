@@ -24,5 +24,6 @@ class TUser extends Authenticatable
 
   protected $hidden = [
     't_user_password',
+    't_user_id'
   ];
 }
