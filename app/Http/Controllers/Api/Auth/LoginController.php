@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\TUser;
+use Laravel\Sanctum\PersonalAccessToken;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -44,14 +46,20 @@ class LoginController extends Controller
 
     $user->tokens()->where('expires_at', '<', now())->delete();
 
-    $token = $user->createToken('auth_token', ['*']);
-    $user->tokens()->where('id', $token->accessToken->id)->update(['expires_at' => now()->addHours(10)]);
-    $token = $token->plainTextToken;
+    // Buat token baru
+    $tokenResult = $user->createToken('auth_token');
+    $plainTextToken = $tokenResult->plainTextToken;
+
+    // Update expire time token-nya
+    $tokenId = explode('|', $plainTextToken)[0];
+    PersonalAccessToken::find($tokenId)->update([
+      'expires_at' => Carbon::now()->addHours(10)
+    ]);
 
     return response()->json([
       'status' => 1,
       'user' => $user,
-      'token' => $token,
+      'token' => $plainTextToken,
       'message' => 'Login berhasil!'
     ], 200);
   }
