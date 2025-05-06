@@ -114,6 +114,7 @@ class TTransaksiController extends Controller
   public function update(Request $request, string $id)
   {
     $data = TTransaksi::where('t_transaksi_id', $id)->first();
+    
     if (empty($data)) {
       return response()->json([
         'status' => 0,
@@ -128,7 +129,6 @@ class TTransaksiController extends Controller
       't_transaksi_jumlah' => 'required',
       't_transaksi_total_harga' => 'required',
       't_transaksi_jenis_pembayaran' => 'required',
-      't_transaksi_status' => 'required',
     ];
 
     $validator = Validator::make($request->all(), $rules);
@@ -140,7 +140,6 @@ class TTransaksiController extends Controller
       ], 400);
     }
 
-    $data = new TTransaksi();
     $data->t_transaksi_user_id = $request->t_transaksi_user_id;
     $data->t_transaksi_produk_id = $request->t_transaksi_produk_id;
     $data->t_transaksi_kategori_id = $request->t_transaksi_kategori_id;
