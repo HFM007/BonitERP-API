@@ -46,11 +46,9 @@ class LoginController extends Controller
 
     $user->tokens()->where('expires_at', '<', now())->delete();
 
-    // Buat token baru
     $tokenResult = $user->createToken('auth_token');
     $plainTextToken = $tokenResult->plainTextToken;
 
-    // Update expire time token-nya
     $tokenId = explode('|', $plainTextToken)[0];
     PersonalAccessToken::find($tokenId)->update([
       'expires_at' => Carbon::now()->addHours(10)
