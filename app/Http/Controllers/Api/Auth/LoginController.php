@@ -41,8 +41,12 @@ class LoginController extends Controller
         'message' => 'Password salah!'
       ], 400);
     }
-    
-    $token = $user->createToken('auth_token')->plainTextToken;
+
+    $user->tokens()->where('expires_at', '<', now())->delete();
+
+    $token = $user->createToken('auth_token', ['*']);
+    $user->tokens()->where('id', $token->accessToken->id)->update(['expires_at' => now()->addHours(10)]);
+    $token = $token->plainTextToken;
 
     return response()->json([
       'status' => 1,
