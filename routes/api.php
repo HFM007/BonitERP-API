@@ -5,14 +5,9 @@ use App\Http\Controllers\Api\MKategoriController;
 use App\Http\Controllers\Api\TTransaksiController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
-use App\Http\Middleware\CheckTokenExpire;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-// Route::get('/user', function (Request $request) {
-//   return $request->user();
-// })->middleware('auth:sanctum');
 
 Route::prefix('auth')->group(function () {
   Route::post('/register', [RegisterController::class, '__invoke']);
@@ -20,7 +15,7 @@ Route::prefix('auth')->group(function () {
   // Route::post('/logout', [LogoutController::class, '__invoke'])->middleware('auth:sanctum');
 });
 
-Route::prefix('product')->middleware(['auth:sanctum', CheckTokenExpire::class])->group(function () {
+Route::prefix('product')->middleware('auth:sanctum')->group(function () {
   Route::get('/', [TProductController::class, 'index']);
   Route::get('/{id}', [TProductController::class, 'show']);
   Route::post('/', [TProductController::class, 'store']);
