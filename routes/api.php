@@ -19,7 +19,7 @@ Route::prefix('auth')->group(function () {
   // Route::post('/logout', [LogoutController::class, '__invoke'])->middleware('auth:sanctum');
 });
 
-Route::prefix('product')->group(function () {
+Route::prefix('product')->middleware('auth:sanctum')->group(function () {
   Route::get('/', [TProductController::class, 'index']);
   Route::get('/{id}', [TProductController::class, 'show']);
   Route::post('/', [TProductController::class, 'store']);
@@ -27,7 +27,7 @@ Route::prefix('product')->group(function () {
   Route::put('/delete/{id}', [TProductController::class, 'destroy']);
 });
 
-Route::prefix('mkategori')->group(function () {
+Route::prefix('mkategori')->middleware('auth:sanctum')->group(function () {
   Route::get('/', [MKategoriController::class, 'index']);
   Route::get('/{id}', [MKategoriController::class, 'show']);
   Route::post('/', [MKategoriController::class, 'store']);
@@ -35,7 +35,7 @@ Route::prefix('mkategori')->group(function () {
   Route::put('/delete/{id}', [MKategoriController::class, 'destroy']);
 });
 
-Route::prefix('transaksi')->group(function () {
+Route::prefix('transaksi')->middleware('auth:sanctum')->group(function () {
   Route::get('/', [TTransaksiController::class, 'index']);
   Route::get('/{id}', [TTransaksiController::class, 'show']);
   Route::post('/', [TTransaksiController::class, 'store']);
