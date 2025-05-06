@@ -39,7 +39,7 @@ class RegisterController extends Controller
     if ($post) {
       return response()->json([
         'status' => 1,
-        'data' => new UserResource($data),
+        'data' => $data,
         'message' => 'User telah terdaftar'
       ], 200);
     } else {
