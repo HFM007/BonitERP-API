@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignId('t_transaksi_produk_id')->constrained('t_products', 't_products_id')->onDelete('cascade');
             $table->foreignId('t_transaksi_kategori_id')->constrained('m_kategori', 'm_kategori_id')->onDelete('cascade');
             $table->integer('t_transaksi_jumlah');
-            $table->integer('t_transaksi_total_harga');
+            $table->string('t_transaksi_total_harga');
             $table->string('t_transaksi_jenis_pembayaran');
-            $table->string('t_transaksi_status');
+            $table->integer('t_transaksi_status');
             $table->timestamps();
         });
     }
