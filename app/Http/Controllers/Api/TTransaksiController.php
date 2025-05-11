@@ -55,7 +55,6 @@ class TTransaksiController extends Controller
     $data = new TTransaksi();
     $data->t_transaksi_user_id = $request->t_transaksi_user_id;
     $data->t_transaksi_produk_id = $request->t_transaksi_produk_id;
-    $data->t_transaksi_kategori_id = $request->t_transaksi_kategori_id;
     $data->t_transaksi_jumlah = $request->t_transaksi_jumlah;
     $data->t_transaksi_total_harga = $request->t_transaksi_total_harga;
     $data->t_transaksi_jenis_pembayaran = $request->t_transaksi_jenis_pembayaran;
@@ -120,7 +119,6 @@ class TTransaksiController extends Controller
     $rules = [
       't_transaksi_user_id' => 'required',
       't_transaksi_produk_id' => 'required',
-      't_transaksi_kategori_id' => 'required',
       't_transaksi_jumlah' => 'required',
       't_transaksi_total_harga' => 'required',
       't_transaksi_jenis_pembayaran' => 'required',
