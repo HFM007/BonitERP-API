@@ -12,11 +12,9 @@ class TTransaksi extends Model
 {
   protected $table = "t_transaksi";
   protected $primaryKey = "t_transaksi_id";
-  public $timestamps = true;
+  public $timestamps = false;
   protected $fillable = [
     't_transaksi_user_id',
-    't_transaksi_produk_id',
-    't_transaksi_jumlah',
     't_transaksi_total_harga',
     't_transaksi_jenis_pembayaran',
     't_transaksi_status',
@@ -25,19 +23,17 @@ class TTransaksi extends Model
   protected $casts = [
     't_transaksi_id' => 'integer',
     't_transaksi_user_id' => 'integer',
-    't_transaksi_produk_id' => 'integer',
-    't_transaksi_jumlah' => 'integer',
     't_transaksi_total_harga' => 'string',
     't_transaksi_jenis_pembayaran' => 'string',
     't_transaksi_status' => 'integer',
   ];
 
-  public function product()
-  {
-    return $this->belongsTo(TProduct::class, 't_transaksi_produk_id', 't_products_id');
-  }
   public function user()
   {
     return $this->belongsTo(TUser::class, 't_transaksi_user_id', 't_user_id');
+  }
+  public function transaksiDetail()
+  {
+    return $this->hasMany(TTransaksiDetail::class, 't_transaksi_detail_transaksi_id', 't_transaksi_id');
   }
 }
