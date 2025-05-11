@@ -24,6 +24,17 @@ class TProduct extends Model
     't_products_status',
   ];
 
+  protected $casts = [
+    't_products_id' => 'integer',
+    't_products_nama' => 'string',
+    't_products_harga' => 'string',
+    't_products_deskripsi' => 'string',
+    't_products_stok' => 'string',
+    't_products_kategori' => 'string',
+    't_products_gambar' => 'string',
+    't_products_status' => 'integer',
+  ];
+
   public function transaksi()
   {
     return $this->hasMany(TTransaksi::class, 't_transaksi_produk_id', 't_products_id');
