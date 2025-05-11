@@ -16,7 +16,7 @@ class TTransaksiController extends Controller
    */
   public function index()
   {
-    $data = TTransaksi::all();
+    $data = TTransaksi::with('transaksiDetail')->get();
     if ($data->count() != 0) {
       return response()->json([
         'status' => 1,
@@ -105,7 +105,7 @@ class TTransaksiController extends Controller
    */
   public function show(string $id)
   {
-    $data = TTransaksi::where('t_transaksi_id', $id)->first();
+    $data = TTransaksi::where('t_transaksi_id', $id)->with('transaksiDetail')->first();
 
     if ($data) {
       $data->makeHidden('t_transaksi_id');
