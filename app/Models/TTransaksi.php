@@ -22,6 +22,16 @@ class TTransaksi extends Model
     't_transaksi_status',
   ];
 
+  protected $casts = [
+    't_transaksi_id' => 'integer',
+    't_transaksi_user_id' => 'integer',
+    't_transaksi_produk_id' => 'integer',
+    't_transaksi_jumlah' => 'integer',
+    't_transaksi_total_harga' => 'string',
+    't_transaksi_jenis_pembayaran' => 'string',
+    't_transaksi_status' => 'integer',
+  ];
+
   public function product()
   {
     return $this->belongsTo(TProduct::class, 't_transaksi_produk_id', 't_products_id');
