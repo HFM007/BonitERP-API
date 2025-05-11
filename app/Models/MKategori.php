@@ -14,4 +14,10 @@ class MKategori extends Model
     'm_kategori_nama',
     'm_kategori_status',
   ];
+
+  protected $casts = [
+    'm_kategori_id' => 'integer',
+    'm_kategori_nama' => 'string',
+    'm_kategori_status' => 'integer',
+  ];
 }
