@@ -18,7 +18,7 @@ return new class extends Migration {
       $table->string('t_products_stok');
       $table->string('t_products_kategori');
       $table->string('t_products_gambar');
-      $table->string('t_products_status');
+      $table->integer('t_products_status');
     });
   }
 
