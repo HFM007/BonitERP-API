@@ -40,8 +40,4 @@ class TTransaksi extends Model
   {
     return $this->belongsTo(TUser::class, 't_transaksi_user_id', 't_user_id');
   }
-  public function kategori()
-  {
-    return $this->belongsTo(MKategori::class, 't_transaksi_kategori_id', 'm_kategori_id');
-  }
 }
