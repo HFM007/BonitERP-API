@@ -26,4 +26,12 @@ class TUser extends Authenticatable
     't_user_password',
     't_user_id'
   ];
+
+  protected $casts = [
+    't_user_id' => 'integer',
+    't_user_nama' => 'string',
+    't_user_email' => 'string',
+    't_user_password' => 'string',
+    't_user_status' => 'integer',
+  ];
 }
