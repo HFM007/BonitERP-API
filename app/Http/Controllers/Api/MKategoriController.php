@@ -142,7 +142,7 @@ class MKategoriController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Request $request, string $id)
+  public function destroy(string $id)
   {
     $data = MKategori::where('m_kategori_id', $id)->first();
 
