@@ -16,7 +16,7 @@ return new class extends Migration {
       $table->string('t_products_harga');
       $table->string('t_products_deskripsi');
       $table->string('t_products_stok');
-      $table->string('t_products_kategori');
+      $table->foreignId('t_products_kategori')->constrained('m_kategori', 'm_kategori_id')->onDelete('cascade');
       $table->string('t_products_gambar');
       $table->integer('t_products_status');
     });
