@@ -168,7 +168,7 @@ class TProductController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Request $request, string $id)
+  public function destroy(string $id)
   {
     $data = TProduct::where('t_products_id', $id)->first();
 
@@ -179,36 +179,17 @@ class TProductController extends Controller
       ], 404);
     }
 
-    $rules = [
-      't_products_status' => 'required',
-    ];
+    $deleted = $data->delete();
 
-    $validator = Validator::make($request->all(), $rules);
-
-    if ($validator->fails()) {
-      return response()->json([
-        'status' => 0,
-        'data' => $validator->errors(),
-        'message' => 'Data gagal diperbarui!'
-      ], 400);
-    }
-
-    $data->t_products_status = $request->t_products_status;
-
-    $post = $data->save();
-
-    if ($post) {
-      $data->makeHidden('t_products_id', 't_products_nama', 't_products_harga', 't_products_deskripsi', 't_products_stok', 't_products_kategori', 't_products_gambar');
-
+    if ($deleted) {
       return response()->json([
         'status' => 1,
-        'data' => $data,
-        'message' => 'Data berhasil diperbarui!'
+        'message' => 'Data berhasil dihapus!'
       ], 200);
     } else {
       return response()->json([
         'status' => 0,
-        'message' => 'Data gagal diperbarui!'
+        'message' => 'Data gagal dihapus!'
       ], 400);
     }
   }
