@@ -212,35 +212,17 @@ class TTransaksiController extends Controller
       ], 404);
     }
 
-    $rules = [
-      't_transaksi_status' => 'required',
-    ];
+    $deleted = $data->delete();
 
-    $validator = Validator::make($request->all(), $rules);
-    if ($validator->fails()) {
-      return response()->json([
-        'status' => 0,
-        'data' => $validator->errors(),
-        'message' => 'Data gagal dihapus!'
-      ], 400);
-    }
-
-    $data->t_transaksi_status = $request->t_transaksi_status;
-
-    $post = $data->save();
-
-    if ($post) {
-      $data->makeHidden('t_transaksi_id', 't_transaksi_produk_id', 't_transaksi_user_id', 't_transaksi_jumlah', 't_transaksi_total_harga', 't_transaksi_jenis_pembayaran');
-
+    if ($deleted) {
       return response()->json([
         'status' => 1,
-        'data' => $data,
-        'message' => 'Data berhasil diperbarui!'
+        'message' => 'Data berhasil dihapus!'
       ], 200);
     } else {
       return response()->json([
         'status' => 0,
-        'message' => 'Data gagal diperbarui!'
+        'message' => 'Data gagal dihapus!'
       ], 400);
     }
   }
