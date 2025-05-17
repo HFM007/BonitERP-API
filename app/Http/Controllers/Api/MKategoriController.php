@@ -146,32 +146,14 @@ class MKategoriController extends Controller
   {
     $data = MKategori::where('m_kategori_id', $id)->first();
 
-    $rules = [
-      'm_kategori_status' => 'required',
-    ];
+    $deleted = $data->delete();
 
-    $validator = Validator::make($request->all(), $rules);
-
-    if ($validator->fails()) {
-      $data->makeHidden(['m_kategori_nama','m_katagori_id']);
-      return response()->json([
-        'status' => 0,
-        'data' => $validator->errors(),
-        'message' => 'Data gagal dihapus!'
-      ]);
-    }
-
-    $data->m_kategori_status = $request->m_kategori_status;
-
-    $post = $data->save();
-
-    if ($post) {
+    if ($deleted) {
       $data->makeHidden(['m_kategori_id','m_kategori_nama']);
       return response()->json([
         'status' => 1,
-        'data' => $data,
         'message' => 'Data berhasil dihapus!'
-      ], 200);
+      ], status: 200);
     } else {
       return response()->json([
         'status' => 0,
