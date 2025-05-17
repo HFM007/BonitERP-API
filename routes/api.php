@@ -15,26 +15,8 @@ Route::prefix('auth')->group(function () {
   // Route::post('/logout', [LogoutController::class, '__invoke'])->middleware('auth:sanctum');
 });
 
-Route::prefix('product')->middleware('auth:sanctum')->group(function () {
-  Route::get('/', [TProductController::class, 'index']);
-  Route::get('/{id}', [TProductController::class, 'show']);
-  Route::post('/', [TProductController::class, 'store']);
-  Route::put('/update/{id}', [TProductController::class, 'update']);
-  Route::put('/delete/{id}', [TProductController::class, 'destroy']);
-});
-
-Route::prefix('mkategori')->middleware('auth:sanctum')->group(function () {
-  Route::get('/', [MKategoriController::class, 'index']);
-  Route::get('/{id}', [MKategoriController::class, 'show']);
-  Route::post('/', [MKategoriController::class, 'store']);
-  Route::put('/update/{id}', [MKategoriController::class, 'update']);
-  Route::put('/delete/{id}', [MKategoriController::class, 'destroy']);
-});
-
-Route::prefix('transaksi')->middleware('auth:sanctum')->group(function () {
-  Route::get('/', [TTransaksiController::class, 'index']);
-  Route::get('/{id}', [TTransaksiController::class, 'show']);
-  Route::post('/', [TTransaksiController::class, 'store']);
-  Route::put('/update/{id}', [TTransaksiController::class, 'update']);
-  Route::put('/delete/{id}', [TTransaksiController::class, 'destroy']);
+Route::middleware('auth:sanctum')->group(function () {
+  Route::apiResource('product', TProductController::class);
+  Route::apiResource('mkategori', MKategoriController::class);
+  Route::apiResource('transaksi', TTransaksiController::class);
 });
