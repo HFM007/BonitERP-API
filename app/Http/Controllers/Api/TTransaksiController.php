@@ -143,6 +143,7 @@ class TTransaksiController extends Controller
       't_transaksi_jumlah' => 'required|array',
       't_transaksi_total_harga' => 'required',
       't_transaksi_jenis_pembayaran' => 'required',
+      't_transaksi_status' => 'required',
     ];
 
     $validator = Validator::make($request->all(), $rules);
@@ -165,6 +166,7 @@ class TTransaksiController extends Controller
       $data->t_transaksi_user_id = $request->t_transaksi_user_id;
       $data->t_transaksi_total_harga = $request->t_transaksi_total_harga;
       $data->t_transaksi_jenis_pembayaran = $request->t_transaksi_jenis_pembayaran;
+      $data->t_transaksi_status = $request->t_transaksi_status;
       $data->save();
 
       foreach ($request->t_transaksi_produk_id as $index => $produk_id) {
