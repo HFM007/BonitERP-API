@@ -19,7 +19,7 @@ class TProduct extends Model
     't_products_harga',
     't_products_deskripsi',
     't_products_stok',
-    't_products_kategori',
+    't_products_kategori_id',
     't_products_gambar',
     't_products_status',
   ];
@@ -30,7 +30,7 @@ class TProduct extends Model
     't_products_harga' => 'string',
     't_products_deskripsi' => 'string',
     't_products_stok' => 'string',
-    't_products_kategori' => 'string',
+    't_products_kategori_id' => 'integer',
     't_products_gambar' => 'string',
     't_products_status' => 'integer',
   ];
@@ -38,5 +38,10 @@ class TProduct extends Model
   public function transaksi()
   {
     return $this->hasMany(TTransaksi::class, 't_transaksi_produk_id', 't_products_id');
+  }
+
+  public function kategori()
+  {
+    return $this->belongsTo(MKategori::class, 't_products_kategori_id', 'm_kategori_id');
   }
 }
