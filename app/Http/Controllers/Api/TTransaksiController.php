@@ -108,7 +108,7 @@ class TTransaksiController extends Controller
     $data = TTransaksi::where('t_transaksi_id', $id)->with('transaksiDetail')->first();
 
     if ($data) {
-      $data->makeHidden('t_transaksi_id'. 't_transaksi_detail_transaksi_id');
+      $data->makeHidden('t_transaksi_id' . 't_transaksi_detail_transaksi_id');
 
       return response()->json([
         'status' => 1,
@@ -201,7 +201,7 @@ class TTransaksiController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Request $request, string $id)
+  public function destroy(string $id)
   {
     $data = TTransaksi::where('t_transaksi_id', $id)->first();
 
