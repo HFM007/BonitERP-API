@@ -107,6 +107,7 @@ class MKategoriController extends Controller
 
     $rules = [
       'm_kategori_nama' => 'required',
+      'm_kategori_status' => 'required',
     ];
 
     $validator = Validator::make($request->all(), $rules);
@@ -120,12 +121,12 @@ class MKategoriController extends Controller
     }
 
     $data->m_kategori_nama = $request->m_kategori_nama;
-    $data->m_kategori_status = 1;
+    $data->m_kategori_status = $request->m_kategori_status;
 
     $post = $data->save();
 
     if ($post) {
-      $data->makeHidden(['m_kategori_id', 'm_kategori_status']);
+      $data->makeHidden(['m_kategori_id']);
       return response()->json([
         'status' => 1,
         'data' => $data,
