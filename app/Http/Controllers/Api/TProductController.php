@@ -127,6 +127,7 @@ class TProductController extends Controller
       't_products_stok' => 'required',
       't_products_kategori_id' => 'required',
       't_products_gambar' => 'required',
+      't_products_status' => 'required',
     ];
 
     $validator = Validator::make($request->all(), $rules);
@@ -145,7 +146,7 @@ class TProductController extends Controller
     $data->t_products_stok = $request->t_products_stok;
     $data->t_products_kategori_id = $request->t_products_kategori_id;
     $data->t_products_gambar = $request->t_products_gambar;
-    $data->t_products_status = 1;
+    $data->t_products_status = $request->t_products_status;
 
     $post = $data->save();
 
