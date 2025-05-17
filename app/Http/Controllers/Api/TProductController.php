@@ -40,7 +40,7 @@ class TProductController extends Controller
       't_products_harga' => 'required',
       't_products_deskripsi' => 'required',
       't_products_stok' => 'required',
-      't_products_kategori' => 'required',
+      't_products_kategori_id' => 'required',
       't_products_gambar' => 'required',
     ];
 
@@ -59,7 +59,7 @@ class TProductController extends Controller
     $data->t_products_harga = $request->t_products_harga;
     $data->t_products_deskripsi = $request->t_products_deskripsi;
     $data->t_products_stok = $request->t_products_stok;
-    $data->t_products_kategori = $request->t_products_kategori;
+    $data->t_products_kategori_id = $request->t_products_kategori_id;
     $data->t_products_gambar = $request->t_products_gambar;
     $data->t_products_status = 1;
 
@@ -125,7 +125,7 @@ class TProductController extends Controller
       't_products_harga' => 'required',
       't_products_deskripsi' => 'required',
       't_products_stok' => 'required',
-      't_products_kategori' => 'required',
+      't_products_kategori_id' => 'required',
       't_products_gambar' => 'required',
     ];
 
@@ -143,7 +143,7 @@ class TProductController extends Controller
     $data->t_products_harga = $request->t_products_harga;
     $data->t_products_deskripsi = $request->t_products_deskripsi;
     $data->t_products_stok = $request->t_products_stok;
-    $data->t_products_kategori = $request->t_products_kategori;
+    $data->t_products_kategori_id = $request->t_products_kategori_id;
     $data->t_products_gambar = $request->t_products_gambar;
     $data->t_products_status = 1;
 
